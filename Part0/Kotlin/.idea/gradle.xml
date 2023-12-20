@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="GradleMigrationSettings" migrationVersion="1" />
+  <component name="GradleSettings">
+    <option name="linkedExternalProjectsSettings">
+      <GradleProjectSettings>
+        <option name="testRunner" value="GRADLE" />
+        <option name="distributionType" value="DEFAULT_WRAPPED" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/chapter10-1" />
+            <option value="$PROJECT_DIR$/chapter10-2" />
+            <option value="$PROJECT_DIR$/chapter10-3" />
+            <option value="$PROJECT_DIR$/chapter10-4" />
+            <option value="$PROJECT_DIR$/chapter10-bmi" />
+            <option value="$PROJECT_DIR$/chapter12-2" />
+            <option value="$PROJECT_DIR$/chapter4-1" />
+            <option value="$PROJECT_DIR$/chapter4-3" />
+            <option value="$PROJECT_DIR$/chapter5" />
+            <option value="$PROJECT_DIR$/chapter5-2" />
+            <option value="$PROJECT_DIR$/chapter5-3" />
+            <option value="$PROJECT_DIR$/chapter5-4" />
+            <option value="$PROJECT_DIR$/chapter5-5" />
+            <option value="$PROJECT_DIR$/chapter5-6" />
+            <option value="$PROJECT_DIR$/chapter6-1" />
+            <option value="$PROJECT_DIR$/chapter7-1" />
+            <option value="$PROJECT_DIR$/chapter7-2" />
+            <option value="$PROJECT_DIR$/chapter7-3" />
+            <option value="$PROJECT_DIR$/chapter8-1" />
+            <option value="$PROJECT_DIR$/chapter8-2" />
+            <option value="$PROJECT_DIR$/mywebbrowser" />
+            <option value="$PROJECT_DIR$/tiltsensor" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+    </option>
+  </component>
+</project>

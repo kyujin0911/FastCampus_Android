@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/changeBgColor" android:title="배경색 변경"/>
+    <item android:id="@+id/changeRed" android:title="배경색(빨강)"/>
+    <item android:id="@+id/changeBgGreen" android:title="배경색(초록))"/>
+    <item android:id="@+id/changeBgBlue" android:title="배경색(파랑))"/>
+</menu>

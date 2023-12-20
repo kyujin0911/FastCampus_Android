@@ -1,0 +1,38 @@
+pluginManagement {
+    repositories {
+        google()
+        mavenCentral()
+        gradlePluginPortal()
+    }
+}
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        google()
+        mavenCentral()
+    }
+}
+rootProject.name = "Kotlin"
+include ':app'
+include ':chapter4-1'
+include ':chapter4-3'
+include ':chapter5'
+include ':chapter5-2'
+include ':chapter5-3'
+include ':chapter5-4'
+include ':chapter5-5'
+include ':chapter5-6'
+include ':chapter6-1'
+include ':chapter7-1'
+include ':chapter7-2'
+include ':chapter7-3'
+include ':chapter10-1'
+include ':chapter10-2'
+include ':chapter10-3'
+include ':chapter10-4'
+include ':chapter10-bmi'
+include ':mywebbrowser'
+include ':chapter8-1'
+include ':chapter8-2'
+include ':chapter12-2'
+include ':tiltsensor'
