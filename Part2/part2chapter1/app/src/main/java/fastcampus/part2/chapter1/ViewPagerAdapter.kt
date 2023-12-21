@@ -11,13 +11,19 @@ class ViewPagerAdapter(private val mainActivity: MainActivity): FragmentStateAda
     override fun createFragment(position: Int): Fragment {
         return when(position){
             0 ->{
-                return WebViewFragment(position)
+                return WebViewFragment(position, "https://comic.naver.com/webtoon?tab=mon").apply {
+                    listener = mainActivity // fragment에게 listener의 존재가 mainActivity라는 것을 알림
+                }
             }
             1 -> {
-                return WebViewFragment(position)
+                return WebViewFragment(position, "https://comic.naver.com/webtoon?tab=tue").apply {
+                    listener = mainActivity
+                }
             }
             else -> {
-                return WebViewFragment(position)
+                return WebViewFragment(position, "https://comic.naver.com/webtoon?tab=wed").apply {
+                    listener = mainActivity
+                }
             }
         }
     }
