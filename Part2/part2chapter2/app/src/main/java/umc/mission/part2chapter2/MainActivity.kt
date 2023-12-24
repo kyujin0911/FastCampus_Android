@@ -3,46 +3,127 @@ package umc.mission.part2chapter2
 import android.app.ProgressDialog.show
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.content.res.ColorStateList
+import android.graphics.Color
+import android.media.MediaRecorder
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.Settings
+import android.util.Log
 import androidx.appcompat.app.AlertDialog
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import umc.mission.part2chapter2.databinding.ActivityMainBinding
+import java.io.IOException
 
 class MainActivity : AppCompatActivity() {
     companion object {
         private const val REQUEST_RECORD_AUDIO_CODE = 200
     }
+
+    private enum class State{
+        RELEASE, RECORDING, PLAYING
+    }
+
     private lateinit var binding: ActivityMainBinding
+    private var recorder: MediaRecorder? = null
+    private var fileName: String = ""
+    private var state: State = State.RELEASE
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.recoredBtn.setOnClickListener {
-            when {
-                ContextCompat.checkSelfPermission( // 앱 처음 실행 시 권한 혀용한 적이 없으니 넘어감
-                    this,
-                    android.Manifest.permission.RECORD_AUDIO
-                ) == PackageManager.PERMISSION_GRANTED -> {
-                    // You can use the API that requires the permission.
+        fileName = "${externalCacheDir?.absolutePath}/audiorecordtest.3gp"
 
+        binding.recoredBtn.setOnClickListener {
+            when(state){
+                State.RELEASE -> {
+                    record()
                 }
-                ActivityCompat.shouldShowRequestPermissionRationale( // 권한 팝업을 띄운 적이 있는 경우는 true
-                    this, android.Manifest.permission.RECORD_AUDIO) -> {
-                    showPermissionRationalDialog()
+                State.RECORDING -> {
+                    onRecord(false)
                 }
-                else -> { // 시스템 팝업을 띄움
-                    // You can directly ask for the permission.
-                    ActivityCompat.requestPermissions(this,
-                        arrayOf(android.Manifest.permission.RECORD_AUDIO),
-                        REQUEST_RECORD_AUDIO_CODE)
+                State.PLAYING -> {
+
                 }
             }
         }
+    }
+
+    private fun record(){
+        when {
+            ContextCompat.checkSelfPermission( // 앱 처음 실행 시 권한 혀용한 적이 없으니 넘어감
+                this,
+                android.Manifest.permission.RECORD_AUDIO
+            ) == PackageManager.PERMISSION_GRANTED -> {
+                onRecord(true)
+
+            }
+            ActivityCompat.shouldShowRequestPermissionRationale( // 권한 팝업을 띄운 적이 있는 경우는 true
+                this, android.Manifest.permission.RECORD_AUDIO) -> {
+                showPermissionRationalDialog()
+            }
+            else -> { // 시스템 팝업을 띄움
+                // You can directly ask for the permission.
+                ActivityCompat.requestPermissions(this,
+                    arrayOf(android.Manifest.permission.RECORD_AUDIO),
+                    REQUEST_RECORD_AUDIO_CODE)
+            }
+        }
+    }
+
+    // 릴리즈 -> 녹음중 -> 릴리즈(저장)
+    // 릴리즈 -> 재생 -> 릴리즈
+
+    private fun onRecord(isStart: Boolean) = if(isStart){
+        startRecording()
+    } else{
+        stopRecording()
+    }
+
+    private fun startRecording(){
+        state = State.RECORDING
+        recorder = MediaRecorder().apply {
+            setAudioSource(MediaRecorder.AudioSource.MIC) // 마이크를 사용하겠다는 의미
+            setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP) // 출력 파일 형식 지정
+            setOutputFile(fileName) // 지정한 파일로 출력
+            setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB)
+
+            try {
+                prepare()
+            } catch (e: IOException){ // 출력 파일을 쓸 때 용량 부족, 파일 권한 등으로 인한 에러 발생 가능
+                Log.e("APP", "prepare() failed $e")
+            }
+
+            start()
+        }
+
+        binding.recoredBtn.setImageDrawable(
+            ContextCompat.getDrawable(this, R.drawable.baseline_stop_24)
+        )
+
+        binding.recoredBtn.imageTintList = ColorStateList.valueOf(Color.BLACK)
+        binding.playBtn.isEnabled =false
+        binding.playBtn.alpha = 0.3f // playBtn을 사용하지 못한다는 것을 표현하기 위해 playBtn을 살짝 흐리게 설정
+    }
+
+    private fun stopRecording(){
+        recorder?.apply {
+            stop()
+            release()
+        }
+        recorder = null
+        state = State.RELEASE
+
+        binding.recoredBtn.setImageDrawable(
+            ContextCompat.getDrawable(this, R.drawable.baseline_fiber_manual_record_24)
+        )
+        binding.recoredBtn.imageTintList = ColorStateList.valueOf(ContextCompat.getColor(this, R.color.red))
+        binding.playBtn.isEnabled = true
+        binding.playBtn.alpha = 1.0f
     }
 
     private fun showPermissionRationalDialog(){ //Rational: 원리
@@ -89,7 +170,7 @@ class MainActivity : AppCompatActivity() {
                 && grantResults.firstOrNull() == PackageManager.PERMISSION_GRANTED
 
         if(audioRecordPermissionGranted){
-
+            onRecord(true)
         } else {
             if (ActivityCompat.shouldShowRequestPermissionRationale(this, android.Manifest.permission.RECORD_AUDIO)){ // 권한 팝업이 떴지만 거절을 한 경우 교육을 위한 교육용 팝업을 띄움
                 showPermissionRationalDialog()
