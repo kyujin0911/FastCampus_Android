@@ -65,6 +65,8 @@ class MainActivity : AppCompatActivity(), OnTimerTickListener {
                 }
             }
         }
+        binding.playBtn.isEnabled = false
+        binding.playBtn.alpha = 0.3f
 
         binding.stopBtn.setOnClickListener {
             when(state){
@@ -258,7 +260,7 @@ class MainActivity : AppCompatActivity(), OnTimerTickListener {
 
 
         if(state == State.PLAYING){
-            binding.waveformView.replayAmplitude(duration.toInt())
+            binding.waveformView.replayAmplitude()
         } else  if(state == State.RECORDING){
             binding.waveformView.addAmplitude(recorder?.maxAmplitude?.toFloat() ?: 0f)
         }
