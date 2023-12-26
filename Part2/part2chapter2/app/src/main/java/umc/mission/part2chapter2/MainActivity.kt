@@ -18,7 +18,7 @@ import androidx.core.content.ContextCompat
 import umc.mission.part2chapter2.databinding.ActivityMainBinding
 import java.io.IOException
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), OnTimerTickListener {
     companion object {
         private const val REQUEST_RECORD_AUDIO_CODE = 200
     }
@@ -26,7 +26,7 @@ class MainActivity : AppCompatActivity() {
     private enum class State{
         RELEASE, RECORDING, PLAYING
     }
-
+    private lateinit var timer: Timer
     private lateinit var binding: ActivityMainBinding
     private var recorder: MediaRecorder? = null
     private var player: MediaPlayer? = null
@@ -39,6 +39,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         fileName = "${externalCacheDir?.absolutePath}/audiorecordtest.3gp"
+        timer = Timer(this)
 
         binding.recoredBtn.setOnClickListener {
             when(state){
@@ -127,6 +128,8 @@ class MainActivity : AppCompatActivity() {
             start()
         }
 
+        timer.start()
+
         binding.recoredBtn.setImageDrawable(
             ContextCompat.getDrawable(this, R.drawable.baseline_stop_24)
         )
@@ -142,6 +145,8 @@ class MainActivity : AppCompatActivity() {
             release()
         }
         recorder = null
+
+        timer.stop()
         state = State.RELEASE
 
         binding.recoredBtn.setImageDrawable(
@@ -237,5 +242,9 @@ class MainActivity : AppCompatActivity() {
                 showPermissionSettingDialog() // 권한 허용을 위한 팝업을 반복적으로 띄우는 것은 사용자에게 피로감 유발 따라서 직접 설정에서 허용하도록 유도하는 팝업 띄움
             }
         }
+    }
+
+    override fun onTick(duration: Long) {
+        binding.waveformView.addAmplitude(recorder?.maxAmplitude?.toFloat() ?: 0f)
     }
 }
