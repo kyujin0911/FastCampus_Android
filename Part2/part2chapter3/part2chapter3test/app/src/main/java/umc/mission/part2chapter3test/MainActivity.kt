@@ -10,6 +10,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.core.widget.addTextChangedListener
+import com.google.gson.Gson
 import okhttp3.*
 import umc.mission.part2chapter3test.databinding.ActivityMainBinding
 import java.io.BufferedReader
@@ -58,11 +59,13 @@ class MainActivity : AppCompatActivity() {
                     // 해당 HTTP 응답 코드가 성공 범위에 속한다는 것을 의미합니다.
                     if (response.isSuccessful) {
                         val response = response.body?.string()
+
+                        val message = Gson().fromJson(response, Message::class.java)
                         // string(): response의 body 객체를 string으로 return
                         // toString은 body의 해시값을 받아옴
                         runOnUiThread {
                             binding.informationTextView.isVisible = true
-                            binding.informationTextView.text = response
+                            binding.informationTextView.text = message.message
 
                             binding.confirmBtn.isVisible = false
                             binding.serverHostEditText.isVisible = false
@@ -86,6 +89,8 @@ class MainActivity : AppCompatActivity() {
         // excute(): 즉시 요청을 호출하고, 응답이 처리될 때까지 블록되거나 오류가 발생할 때까지 대기
         // return: Response
         //val response = client.newCall(request).execute()
+
+        //Gson은 Json 형태의 파일을 Kotlin의 Data class로 변환 지원
 
         /*Thread{
             try {

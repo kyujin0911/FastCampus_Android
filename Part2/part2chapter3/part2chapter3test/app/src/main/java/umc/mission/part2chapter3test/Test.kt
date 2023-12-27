@@ -26,7 +26,7 @@ fun main(){
             printer.println("HTTP/1.1 200 OK") // 규격
             printer.println("Content-Type: text/html\r\n") // header
 
-            printer.println("<h1>Hello World</h1>")
+            printer.println("{\"message\": \"Hello World\"}")
             printer.println("\r\n")
             printer.flush()
 
