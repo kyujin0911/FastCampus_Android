@@ -9,5 +9,4 @@ data class UserDto(
 
     @SerializedName("items")
     val items: List<User>
-
     )
