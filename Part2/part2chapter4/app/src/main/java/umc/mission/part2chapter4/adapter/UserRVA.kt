@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import umc.mission.part2chapter4.databinding.ItemUserBinding
 import umc.mission.part2chapter4.model.User
 
-class UserRVA : ListAdapter<User, UserRVA.UserViewHolder>(diffUtil) {
+class UserRVA(val onClick: (User) -> Unit) : ListAdapter<User, UserRVA.UserViewHolder>(diffUtil) {
     companion object {
         val diffUtil = object : DiffUtil.ItemCallback<User>() {
             override fun areItemsTheSame(oldItem: User, newItem: User): Boolean {
@@ -28,6 +28,9 @@ class UserRVA : ListAdapter<User, UserRVA.UserViewHolder>(diffUtil) {
         RecyclerView.ViewHolder(binding.root) {
         fun bind(user: User) {
             binding.usernameTV.text = user.username
+            binding.root.setOnClickListener {
+                onClick(user)
+            }
         }
     }
 
