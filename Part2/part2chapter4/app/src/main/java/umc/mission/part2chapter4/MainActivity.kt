@@ -37,18 +37,6 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        /*val githubService = retrofit.create(GitHubService::class.java)
-        githubService.listRepos("kyujin0911").enqueue(object: Callback<List<Repo>>{
-            override fun onResponse(call: Call<List<Repo>>, response: Response<List<Repo>>) {
-                Log.e("MainActivity", "List Repo: ${response.body().toString()}")
-            }
-
-            override fun onFailure(call: Call<List<Repo>>, t: Throwable) {
-
-            }
-
-        })*/
-
         userRVA = UserRVA{
             val intent = Intent(this@MainActivity, RepoActivity::class.java)
             intent.putExtra("username", it.username)
