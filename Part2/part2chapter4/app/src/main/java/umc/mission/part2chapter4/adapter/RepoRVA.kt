@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import umc.mission.part2chapter4.databinding.ItemRepoBinding
 import umc.mission.part2chapter4.model.Repo
 
-class RepoRVA: ListAdapter<Repo, RepoRVA.RepoViewHolder>(diffUtil) {
+class RepoRVA(private val onClick: (Repo) -> Unit): ListAdapter<Repo, RepoRVA.RepoViewHolder>(diffUtil) {
 
     companion object{
         val diffUtil = object : DiffUtil.ItemCallback<Repo>(){
@@ -29,6 +29,9 @@ class RepoRVA: ListAdapter<Repo, RepoRVA.RepoViewHolder>(diffUtil) {
             binding.descriptionTV.text = repo.description
             binding.forkCountTV.text = repo.forkCount.toString()
             binding.starCountTV.text = repo.starCount.toString()
+            binding.root.setOnClickListener {
+                onClick(repo)
+            }
         }
     }
 
