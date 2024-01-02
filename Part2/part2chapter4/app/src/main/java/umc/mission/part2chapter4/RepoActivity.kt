@@ -12,6 +12,7 @@ import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import umc.mission.part2chapter4.APIClient.retrofit
 import umc.mission.part2chapter4.adapter.RepoRVA
 import umc.mission.part2chapter4.databinding.ActivityRepoBinding
 import umc.mission.part2chapter4.model.Repo
@@ -22,11 +23,6 @@ class RepoActivity : AppCompatActivity() {
     private lateinit var repoRVA: RepoRVA
     private var page = 0
     private var hasMore = true
-
-    private val retrofit = Retrofit.Builder()
-        .baseUrl("https://api.github.com/")
-        .addConverterFactory(GsonConverterFactory.create())
-        .build()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -67,7 +63,7 @@ class RepoActivity : AppCompatActivity() {
     }
 
     private fun listRepo(username: String, page: Int){
-        val githubService = retrofit.create(GitHubService::class.java)
+        val githubService = APIClient.retrofit.create(GitHubService::class.java)
         githubService.listRepos(username, page).enqueue(object: Callback<List<Repo>> {
             override fun onResponse(call: Call<List<Repo>>, response: Response<List<Repo>>) {
                 Log.e("MainActivity", "List Repo: ${response.body().toString()}")

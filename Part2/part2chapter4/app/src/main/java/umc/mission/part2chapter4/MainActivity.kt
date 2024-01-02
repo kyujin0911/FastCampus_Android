@@ -14,6 +14,7 @@ import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import umc.mission.part2chapter4.APIClient.retrofit
 import umc.mission.part2chapter4.adapter.UserRVA
 import umc.mission.part2chapter4.databinding.ActivityMainBinding
 import umc.mission.part2chapter4.model.Repo
@@ -23,11 +24,6 @@ import umc.mission.part2chapter4.network.GitHubService
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var userRVA: UserRVA
-
-    private val retrofit = Retrofit.Builder()
-        .baseUrl("https://api.github.com/")
-        .addConverterFactory(GsonConverterFactory.create())
-        .build()
 
     private val handler = Handler(Looper.getMainLooper())
     private var searchFor = ""
@@ -60,7 +56,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun searchUsers(){
-        val githubService = retrofit.create(GitHubService::class.java)
+        val githubService = APIClient.retrofit.create(GitHubService::class.java)
 
         githubService.searchUsers(searchFor).enqueue(object: Callback<UserDto>{
             override fun onResponse(call: Call<UserDto>, response: Response<UserDto>) {
