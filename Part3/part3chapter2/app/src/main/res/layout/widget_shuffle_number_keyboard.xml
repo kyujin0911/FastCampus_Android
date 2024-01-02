@@ -2,6 +2,16 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+        <variable
+            name="view"
+            type="umc.mission.part3chapter2.widget.ShuffleNumberKeyboard" />
+
+        <variable
+            name="clicklistener"
+            type="android.view.View.OnClickListener" />
+    </data>
+
     <GridLayout
         android:id="@+id/gridLayout"
         android:layout_width="match_parent"
@@ -13,50 +23,83 @@
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/keypadNum1"
             style="@style/Button.KeyPad"
-            tools:text="1"/>
+            android:onClick="@{clicklistener}"
+            android:tag="num"
+            tools:text="1" />
+
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/keypadNum2"
             style="@style/Button.KeyPad"
-            tools:text="2"/>
+            android:onClick="@{clicklistener}"
+            android:tag="num"
+            tools:text="2" />
+
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/keypadNum3"
             style="@style/Button.KeyPad"
-            tools:text="3"/>
+            android:onClick="@{clicklistener}"
+            android:tag="num"
+            tools:text="3" />
+
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/keypadNum4"
             style="@style/Button.KeyPad"
-            tools:text="4"/>
+            android:onClick="@{clicklistener}"
+            android:tag="num"
+            tools:text="4" />
+
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/keypadNum5"
             style="@style/Button.KeyPad"
-            tools:text="5"/>
+            android:onClick="@{clicklistener}"
+            android:tag="num"
+            tools:text="5" />
+
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/keypadNum6"
             style="@style/Button.KeyPad"
-            tools:text="6"/>
+            android:onClick="@{clicklistener}"
+            android:tag="num"
+            tools:text="6" />
+
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/keypadNum7"
             style="@style/Button.KeyPad"
-            tools:text="7"/>
+            android:onClick="@{clicklistener}"
+            android:tag="num"
+            tools:text="7" />
+
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/keypadNum8"
             style="@style/Button.KeyPad"
-            tools:text="8"/>
+            android:onClick="@{clicklistener}"
+            android:tag="num"
+            tools:text="8" />
+
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/keypadNum9"
             style="@style/Button.KeyPad"
-            tools:text="9"/>
+            android:onClick="@{clicklistener}"
+            android:tag="num"
+            tools:text="9" />
+
         <androidx.appcompat.widget.AppCompatImageView
             style="@style/Button.KeyPad"
-            android:src="@drawable/baseline_backspace_24"
-            android:padding="56dp"/>
+            android:padding="56dp"
+            android:onClick="@{() -> view.onClickDelete()}"
+            android:src="@drawable/baseline_backspace_24" />
+
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/keypadNum10"
             style="@style/Button.KeyPad"
-            tools:text="0"/>
+            android:onClick="@{clicklistener}"
+            android:tag="num"
+            tools:text="0" />
+
         <androidx.appcompat.widget.AppCompatTextView
             style="@style/Button.KeyPad"
-            android:text="입력 완료"/>
+            android:onClick="@{() -> view.onClickDone()}"
+            android:text="입력 완료" />
 
     </GridLayout>
 </layout>
