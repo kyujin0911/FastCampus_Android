@@ -6,7 +6,7 @@ plugins {
 
 android {
     namespace = "umc.mission.part3chapter2"
-    compileSdk = 33
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "umc.mission.part3chapter2"

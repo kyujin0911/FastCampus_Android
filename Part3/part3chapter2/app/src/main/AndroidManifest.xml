@@ -21,6 +21,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name="umc.mission.part3chapter2.PinActivity" />
     </application>
 
 </manifest>

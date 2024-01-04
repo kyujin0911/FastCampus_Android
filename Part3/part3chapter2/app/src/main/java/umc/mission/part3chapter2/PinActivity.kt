@@ -4,8 +4,9 @@ import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import umc.mission.part3chapter2.databinding.ActivityPinBinding
+import umc.mission.part3chapter2.widget.ShuffleNumberKeyboard
 
-class PinActivity: AppCompatActivity() {
+class PinActivity: AppCompatActivity(), ShuffleNumberKeyboard.KeyPadListener {
 
     private lateinit var binding: ActivityPinBinding
     private val viewModel: PinViewModel by viewModels()
@@ -15,5 +16,20 @@ class PinActivity: AppCompatActivity() {
         binding = ActivityPinBinding.inflate(layoutInflater)
         setContentView(binding.root)
         binding.viewModel = viewModel
+        binding.lifecycleOwner = this
+
+        binding.shuffleKeyboard.setKeyPadListener(this)
+    }
+
+    override fun onClickNum(num: String) {
+        viewModel.input(num)
+    }
+
+    override fun onClickDelete() {
+        viewModel.delete()
+    }
+
+    override fun onClickDone() {
+        viewModel.done()
     }
 }
