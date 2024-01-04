@@ -22,6 +22,7 @@
             </intent-filter>
         </activity>
         <activity android:name="umc.mission.part3chapter2.PinActivity" />
+        <activity android:name="umc.mission.part3chapter2.IdentityInputActivity" />
     </application>
 
 </manifest>
