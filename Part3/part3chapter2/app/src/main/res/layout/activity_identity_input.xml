@@ -206,7 +206,6 @@
                         style="@style/Widget.App.TextInputEditText"
                         android:hint="이름"
                         android:imeOptions="actionNext"
-                        android:inputType="number"
                         android:maxLength="8"/>
 
                 </com.google.android.material.textfield.TextInputLayout>
