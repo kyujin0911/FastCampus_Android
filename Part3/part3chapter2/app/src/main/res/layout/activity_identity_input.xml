@@ -52,6 +52,7 @@
                     android:visibility="gone"
                     tools:visibility="visible"
                     android:text="입력 완료"
+                    android:onClick="@{() -> view.onClickDone()}"
                     />
                 
                 <com.google.android.material.textfield.TextInputLayout
