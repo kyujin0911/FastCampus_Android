@@ -23,6 +23,7 @@
         </activity>
         <activity android:name="umc.mission.part3chapter2.PinActivity" />
         <activity android:name="umc.mission.part3chapter2.IdentityInputActivity" />
+        <activity android:name="umc.mission.part3chapter2.VerifyOtpActivity" />
     </application>
 
 </manifest>

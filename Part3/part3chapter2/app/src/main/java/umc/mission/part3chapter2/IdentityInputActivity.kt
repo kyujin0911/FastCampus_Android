@@ -1,5 +1,6 @@
 package umc.mission.part3chapter2
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.inputmethod.EditorInfo
 import androidx.appcompat.app.AppCompatActivity
@@ -115,6 +116,8 @@ class IdentityInputActivity : AppCompatActivity() {
         if(!validPhone()){
             binding.phoneLayout.error = "전화번호 형식이 다릅니다."
         }
+
+        startActivity(Intent(this, VerifyOtpActivity::class.java))
     }
 
     private fun validName() = !binding.nameEdit.text.isNullOrBlank()
