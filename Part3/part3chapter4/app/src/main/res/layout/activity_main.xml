@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="view"
+            type="umc.mission.part3chapter4.MainActivity" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".MainActivity"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:onClick="@{() -> view.openMVC()}"
+            android:text="MVC"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:onClick="@{() -> view.openMVP()}"
+            android:text="MVP"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:onClick="@{() -> view.openMVVM()}"
+            android:text="MVVM"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:onClick="@{() -> view.openMVI()}"
+            android:text="MVI"/>
+
+
+    </LinearLayout>
+</layout>
