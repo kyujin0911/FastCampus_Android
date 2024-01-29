@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="item"
+            type="kr.ac.tukorea.part3chapter6.model.Sale" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="8dp">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:scaleType="centerCrop"
+            app:imageUrl="@{item.imageUrl}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/sale_iv"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:layout_marginHorizontal="8dp"
+            app:layout_constraintBottom_toBottomOf="sale_tv"
+            app:layout_constraintTop_toTopOf="@id/sale_tv"
+            app:layout_constraintStart_toStartOf="parent"
+            app:srcCompat="@drawable/icon_sale"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/sale_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginEnd="8dp"
+            android:text="@{item.sale}"
+            android:textStyle="bold"
+            android:textSize="12sp"
+            android:textColor="#F00000"
+            app:layout_constraintStart_toEndOf="@id/sale_iv"
+            app:layout_constraintTop_toBottomOf="@id/iv"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/name_tv"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="8dp"
+            android:layout_marginTop="8dp"
+            android:maxLines="1"
+            android:ellipsize="end"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/sale_iv"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/badge_tv"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:textStyle="bold"
+            android:textSize="13sp"
+            android:text="@{item.badge}"
+            app:layout_constraintEnd_toEndOf="@id/name_tv"
+            app:layout_constraintStart_toStartOf="@id/name_tv"
+            app:layout_constraintTop_toBottomOf="@id/name_tv"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
