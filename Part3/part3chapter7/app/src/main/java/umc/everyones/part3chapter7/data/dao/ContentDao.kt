@@ -1,6 +1,7 @@
 package umc.everyones.part3chapter7.data.dao
 
 import androidx.room.Dao
+import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
@@ -14,5 +15,8 @@ interface ContentDao {
     fun selectAll(): Flow<List<ContentEntity>>
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(item: ContentEntity)
+
+    @Delete
+    suspend fun delete(item: ContentEntity)
 
 }

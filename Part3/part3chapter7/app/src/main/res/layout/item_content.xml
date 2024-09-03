@@ -7,20 +7,26 @@
         <variable
             name="item"
             type="umc.everyones.part3chapter7.model.ContentEntity" />
+        <variable
+            name="handler"
+            type="umc.everyones.part3chapter7.MainActivity.Handler" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:paddingHorizontal="16dp"
+        android:onClick="@{() -> handler.onClickItem(item)}"
+        android:onLongClick="@{() -> handler.onLongClickItem(item)}"
         android:paddingVertical="8dp">
 
-        <CheckBox
+        <androidx.appcompat.widget.AppCompatCheckBox
             android:id="@+id/content_cb"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:checked="@{item.done}"
             android:text="@{item.content}"
+            android:onCheckedChanged="@{(button, check) -> handler.onCheckedItem(item, check)}"
             android:textSize="18sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"

@@ -7,4 +7,8 @@ interface ContentRepository {
     suspend fun insert(item: ContentEntity)
 
     fun loadList(): Flow<List<ContentEntity>>
+
+    suspend fun modify(item: ContentEntity)
+
+    suspend fun delete(item: ContentEntity)
 }

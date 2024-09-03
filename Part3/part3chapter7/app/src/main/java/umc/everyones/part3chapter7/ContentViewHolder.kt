@@ -6,13 +6,14 @@ import umc.everyones.part3chapter7.databinding.ItemContentBinding
 import umc.everyones.part3chapter7.model.ContentEntity
 
 class ContentViewHolder(
-    private val binding: ItemContentBinding
+    private val binding: ItemContentBinding,
+    private val handler: MainActivity.Handler
 ) : RecyclerView.ViewHolder(binding.root){
     fun bind(item: ContentEntity){
         binding.item = item
-
+        binding.handler = handler
         binding.contentCb.paintFlags = if(item.isDone){
-            binding.contentCb.paintFlags + Paint.STRIKE_THRU_TEXT_FLAG
+            Paint.STRIKE_THRU_TEXT_FLAG
         } else {
             0
         }

@@ -7,14 +7,14 @@ import androidx.recyclerview.widget.ListAdapter
 import umc.everyones.part3chapter7.databinding.ItemContentBinding
 import umc.everyones.part3chapter7.model.ContentEntity
 
-class ListAdapter : ListAdapter<ContentEntity, ContentViewHolder>(diffCallback) {
+class ListAdapter(private val handler: MainActivity.Handler) : ListAdapter<ContentEntity, ContentViewHolder>(diffCallback) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ContentViewHolder {
         return ContentViewHolder(
             ItemContentBinding.inflate(
                 LayoutInflater.from(parent.context),
                 parent,
                 false
-            )
+            ), handler
         )
     }
 
